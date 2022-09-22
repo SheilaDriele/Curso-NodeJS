@@ -1,0 +1,18 @@
+docker run --name mongodb -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=sheila -e MONGO_INITDB_ROOT_PASSWORD=sheila mongo
+
+conectar no database
+mongosh --username=<username> --password=<password>
+mongosh --username=sheila --password=sheila
+
+db.createUser(
+  {
+    user: "flavio",
+    pwd: passwordPrompt(),
+    roles: [
+       { role: "read", db: "aprendendo" },
+       { role: "read", db: "products" },
+       { role: "read", db: "sales" },
+       { role: "readWrite", db: "flaviodb" }
+    ]
+  }
+)

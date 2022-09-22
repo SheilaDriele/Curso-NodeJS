@@ -1,0 +1,52 @@
+{{#each erros}}
+<div class="alert alert-danger">{{texto}}</div>
+{{else}}
+
+{{/each}}
+
+<div class="card">
+    <div class="card-body">
+        <div>
+        <h4>Editar  postagem: </h4>
+        <form action="/admin/postagem/edit" method="POST" class="needs-validation" novalidate >
+        <input type="hidden" value="{{postagem._id}}" name="id">
+            <div class="form-row">
+            <label for="titulo">Título: </label>
+            <input type="text" name="titulo" class="form-control" value="{{postagem.titulo}}" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Insira um título.
+                </div></div>
+            <div class="form-row">
+            <label for="slug">Slug: </label>
+            <input type="text" name="slug" class="form-control" value="{{postagem.slug}}" required>
+                <div class="invalid-feedback">
+                    Insira um slug.
+                </div></div>
+            <div class="form-row">
+            <label for="descricao">Descrição: </label>
+            <input type="text" name="descricao" class="form-control" value="{{postagem.descricao}}" required>
+                <div class="invalid-feedback">
+                    Insira uma descrição.
+                </div></div>
+            <div class="form-row">
+            <label for="conteudo">Conteúdo: </label>
+            <textarea name="conteudo" class="form-control" required> {{postagem.conteudo}}</textarea>
+                <div class="invalid-feedback">
+                    Insira um conteúdo.
+                </div></div>
+            <label for="categoria">Categoria: </label>
+            <select name="categoria" class="custom-select">
+                {{#each categorias}}
+                <option value="{{_id}}">{{nome}}</option>
+                {{else}}
+                <option value="0">Nenhuma categoria registrada</option>
+                {{/each}}
+            </select>
+            <br>
+            <button class="btn btn-success mt-4" type="submit">Editar postagem</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="card">
+    <div class="card-body">
+        <div>
+        <h4>Nova postagem: </h4>
+        <form action="/admin/postagens/nova" method="POST" class="needs-validation" novalidate >
+            <div class="form-row">
+            <label for="titulo">Título: </label>
+            <input type="text" name="titulo" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Insira um título.
+                </div></div>
+            <div class="form-row">
+            <label for="slug">Slug: </label>
+            <input type="text" name="slug" class="form-control" required>
+                <div class="invalid-feedback">
+                    Insira um slug.
+                </div></div>
+            <div class="form-row">
+            <label for="descricao">Descrição: </label>
+            <input type="text" name="descricao" class="form-control" required>
+                <div class="invalid-feedback">
+                    Insira uma descrição.
+                </div></div>
+            <div class="form-row">
+            <label for="conteudo">Conteúdo: </label>
+            <textarea name="conteudo" class="form-control" required></textarea>
+                <div class="invalid-feedback">
+                    Insira um conteúdo.
+                </div></div>
+            <label for="categoria">Categoria: </label>
+            <select name="categoria" class="custom-select">
+                {{#each categorias}}
+                <option value="{{_id}}">{{nome}}</option>
+                {{else}}
+                <option value="0">Nenhuma categoria registrada</option>
+                {{/each}}
+            </select>
+            <br>
+            <button class="btn btn-success mt-4" type="submit">Criar postagem</button>
+        </form>
+    </div>
+</div>
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>
